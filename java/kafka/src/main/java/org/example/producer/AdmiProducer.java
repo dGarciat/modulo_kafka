@@ -1,23 +1,21 @@
 package org.example.producer;
 
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
+import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.header.Header;
-import org.apache.kafka.common.header.internals.RecordHeader;
 import org.apache.kafka.common.serialization.LongSerializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 
-public class KafkaProducer {
+public class AdmiProducer {
 
-    private final org.apache.kafka.clients.producer.KafkaProducer producer;
+    private final KafkaProducer producer;
     private final String keySerializer;
     private final String valueSerializer;
-    public KafkaProducer(String bootstrapServers, String keySerializer, String valueSerializer)
+    public AdmiProducer(String bootstrapServers, String keySerializer, String valueSerializer)
     {
         Properties properties = new Properties();
 
@@ -41,7 +39,7 @@ public class KafkaProducer {
             default:
                 properties.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         }
-        producer = new org.apache.kafka.clients.producer.KafkaProducer<>(properties);
+        producer = new KafkaProducer<>(properties);
     }
 
     public synchronized void sendMessage(String topic, Integer partition, String key, String value,
@@ -58,8 +56,8 @@ public class KafkaProducer {
         //List<Header> headers = new ArrayList<>();
         //headers.add(new RecordHeader("headerKey", "headerValue".getBytes()));
 
-        KafkaProducer kafkaProducer = new KafkaProducer(bootstrapServers, "Long", "String");
-        kafkaProducer.sendMessage("mi-topic", 0, "1", "hola", null, null);
+        AdmiProducer admiProducer = new AdmiProducer(bootstrapServers, "Long", "String");
+        admiProducer.sendMessage("mi-topic", 0, "1", "hola", null, null);
 
     }
 }

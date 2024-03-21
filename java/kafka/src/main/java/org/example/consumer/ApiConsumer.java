@@ -8,13 +8,12 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.Properties;
-import java.util.concurrent.atomic.AtomicReference;
 
-public class KafkaConsumer {
+public class ApiConsumer {
 
     private org.apache.kafka.clients.consumer.KafkaConsumer<String, String> consumer;
 
-    public KafkaConsumer(String groupId, String bootstrapServers, String topic) {
+    public ApiConsumer(String groupId, String bootstrapServers, String topic) {
         Properties properties = new Properties();
         properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         properties.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
@@ -34,8 +33,8 @@ public class KafkaConsumer {
     }
 
     public static void main(String[] args) {
-        KafkaConsumer kafkaConsumer = new KafkaConsumer("javaConsumer", "127.0.0.1:9092", "mi_topico" );
-        kafkaConsumer.pollTopic();
+        ApiConsumer apiConsumer = new ApiConsumer("javaConsumer", "127.0.0.1:9092", "mi_topico" );
+        apiConsumer.pollTopic();
     }
 
 }
