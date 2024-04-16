@@ -1,0 +1,7 @@
+org\curso\kafka\otros\WindowsTest.class
+org\curso\kafka\JoinStreamTest.class
+org\curso\kafka\ProcessorStreamTest.class
+org\curso\kafka\ReduceTest.class
+org\curso\kafka\KafkaStreamAppTest.class
+org\curso\kafka\TransformStreamTest.class
+org\curso\kafka\WindowStreamTest.class
