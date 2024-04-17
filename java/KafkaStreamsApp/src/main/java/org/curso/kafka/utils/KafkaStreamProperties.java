@@ -13,6 +13,8 @@ public class KafkaStreamProperties {
     public static final String TOPIC_SESSION_IN = "topic.session.in";
     public static final String TOPIC_COUNT_OUT = "topic.count.out";
     public static final String TOPIC_OUT_A = "topic.out.a";
+    public static final String TOPIC_OUT_B = "out.industry";
+    public static final String TOPIC_OUT_C = "out.category";
 
     public static Properties getKafkaStreamProperties(String appName){
         Properties config = new Properties();

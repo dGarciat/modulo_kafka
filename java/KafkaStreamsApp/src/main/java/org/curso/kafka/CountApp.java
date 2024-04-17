@@ -43,37 +43,19 @@ public class CountApp {
         stream.foreach((k, v) -> System.out.println(v));
 
 
-        KTable<String, String> kTable = stream.groupByKey().reduce(
-                (newValue, aggValue) -> aggValue + " " + newValue
-        );
-
-        kTable.toStream().to("out");
+        KStream<String, String> wordWord = stream.mapValues(v -> Arrays.asList(v.split(" ")))
+                .flatMapValues(v -> v)
+                .selectKey((k, v) -> v);
 
 
+        KTable<String, Long> groupedStream = wordWord
+                .groupByKey(Grouped.with(Serdes.String(), Serdes.String())).count();
+
+        groupedStream.toStream().foreach((k, v) -> System.out.println(k + " - " + v));
+
+        groupedStream.toStream().to("out");
 
 
-
-
-
-
-
-
-
-
-//        KStream<String, String> wordWord = stream.mapValues(v -> Arrays.asList(v.split(" ")))
-//                .flatMapValues(v -> v)
-//                .selectKey((k, v) -> v);
-
-
-
-
-//
-//
-//        KTable<String, Long> groupedStream = wordWord
-//                .groupByKey(Grouped.with(Serdes.String(), Serdes.String())).count();
-//
-//        groupedStream.toStream().foreach((k,v) -> System.out.println(k + " - " + v));
-//
 //
 //
 ////        KTable<String, Long> kTable = groupedStream.aggregate(
@@ -84,10 +66,6 @@ public class CountApp {
 //
 //
 ////        kTable.toStream().to("out");
-
-
-
-
 
 
         return builder.build();

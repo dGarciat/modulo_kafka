@@ -25,11 +25,7 @@ public class StatelessApp {
 
         // Map
         KStream<Long, JSONObject> jsonStream = stream
-                .map((k, v) -> {
-                    JSONObject json = new JSONObject(v);
-                    json.put("timestamp", new Date());
-                    return new KeyValue<>(k, json);
-                });
+                .map(StatelessApp::getLongJSONObjectKeyValue);
         printStream("Map", jsonStream);
 
         // Filter
@@ -66,5 +62,11 @@ public class StatelessApp {
         kafkaStreams.start();
         Runtime.getRuntime().addShutdownHook(new Thread(kafkaStreams::close));
 
+    }
+
+    private static KeyValue<Long, JSONObject> getLongJSONObjectKeyValue(Long k, String v) {
+        JSONObject json = new JSONObject(v);
+        json.put("timestamp", new Date());
+        return new KeyValue<>(k, json);
     }
 }

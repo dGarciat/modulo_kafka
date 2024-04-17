@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: org.curso.kafka.otros.WindowsTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.120 s -- in org.curso.kafka.otros.WindowsTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.128 s -- in org.curso.kafka.otros.WindowsTest

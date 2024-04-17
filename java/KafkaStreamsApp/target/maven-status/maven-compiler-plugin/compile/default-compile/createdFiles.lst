@@ -21,6 +21,7 @@ org\curso\kafka\CountApp.class
 org\curso\kafka\Sender.class
 org\curso\kafka\WordProcessor$1.class
 org\curso\kafka\aggregate\CountWindowApp.class
+org\curso\kafka\ejercicios\Ejer1.class
 org\curso\kafka\WordProcessor.class
 org\curso\kafka\aggregate\StatelessApp.class
 org\curso\kafka\utils\StreamUtils.class
